@@ -24,32 +24,45 @@ App = {
     return App.initWeb3();
   },
 
-  initWeb3: function() {
+  initWeb3: async function() {
     if (window.ethereum) {
       App.web3Provider = window.ethereum;
       web3 = new Web3(window.ethereum);
-      //   MetaMask for permission
-      window.ethereum.request({ method: "eth_requestAccounts" });
+  
+      try {
+        // Only request once and wait
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+      } catch (error) {
+        console.error("User denied account access", error);
+        alert("❌ MetaMask connection rejected.");
+        return;
+      }
+  
     } else if (window.web3) {
       App.web3Provider = window.web3.currentProvider;
       web3 = new Web3(window.web3.currentProvider);
     } else {
+      // Fallback to local Ganache if MetaMask is not available
       App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
       web3 = new Web3(App.web3Provider);
     }
   
     return App.initContract();
-  },  
+  },    
 
   initContract: function() {
-    $.getJSON('Adoption.json', function(data) {
-      App.contracts.Adoption = TruffleContract(data);
-      App.contracts.Adoption.setProvider(App.web3Provider);
-      return App.markAdopted();
-    });
-    return App.bindEvents();
-  },
-  
+    $.getJSON('Adoption.json')
+      .then(function(data) {
+        App.contracts.Adoption = TruffleContract(data);
+        App.contracts.Adoption.setProvider(App.web3Provider);
+        App.bindEvents(); // Call events after contract is ready
+        return App.markAdopted();
+      })
+      .catch(function(error) {
+        console.error("❌ Failed to load contract:", error);
+      });
+  },  
+
   bindEvents: function() {
     $(document).on('click', '.btn-adopt', App.handleAdopt);
     $(document).on('click', '.btn-search', searchDogs);
@@ -120,7 +133,7 @@ function searchDogs() {
   const filters = getSelectedFilters();
   console.log("Filters", filters);
 
-  // Load the local pets.json instead of fetching from server
+  // Loading local pets.json instead of fetching from server
   fetch('pets.json')
     .then(response => response.json())
     .then(allPets => {

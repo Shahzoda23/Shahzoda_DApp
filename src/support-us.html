@@ -46,7 +46,7 @@
     </p>
   </div>  
  
-  <script> // below is only clicked amount wil be green
+  <script> //   only clicked amount wil be green
     const amountButtons = document.querySelectorAll('.amount-btn');
   
     amountButtons.forEach(button => {
@@ -62,7 +62,7 @@
       const donateBtn = document.querySelector('.cta-donate');
       const messageBox = document.getElementById('donationMessage');
   
-      // Highlighting selected amount
+      // selected amount highlight here
       amountButtons.forEach(button => {
         button.addEventListener('click', () => {
           amountButtons.forEach(btn => btn.classList.remove('active'));
@@ -70,7 +70,6 @@
         });
       });
   
-      // error message with selected amount
       donateBtn.addEventListener('click', () => {
         const activeBtn = document.querySelector('.amount-btn.active');
         if (activeBtn) {
@@ -83,8 +82,7 @@
         }
       });
     });
-  
-    // Keep your goBack function outside
+
     function goBack() {
       window.history.back();
     }
