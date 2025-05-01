@@ -1,5 +1,8 @@
 {
   "server": {
-    "baseDir": ["./src", "./build/contracts"]
+    "baseDir": ["./src", "./build/contracts"],
+    "headers": {
+      "Content-Security-Policy": "script-src 'self' 'unsafe-eval'"
+    }
   }
 }

@@ -1,4 +1,4 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.5.16;
 
 import "truffle/Assert.sol";
 import "truffle/DeployedAddresses.sol";
@@ -16,7 +16,7 @@ contract TestAdoption {
     }
 
     function testGetAdopterAddressByPetId() public {
-        address expected = this;
+        address expected = address(this);
 
         address adopter = adoption.adopters(8);
 

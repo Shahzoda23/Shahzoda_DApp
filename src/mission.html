@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Our Mission - Happy Tails</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="mission-page">
+  <header class="mission-hero">
+    <h1>Our Mission that changes Lives</h1>
+  </header>
+
+  <div class="mission-content">
+
+    <h2>Overview</h2>
+    <p>
+      At <strong>Happy Tails</strong>, our mission is simple: to save the lives of dogs in need and provide them with loving, forever homes. We believe that every dog deserves a second chance, no matter their age, breed, or background.
+    </p>
+
+    <div class="dog-gallery">
+      <div class="dog-card">
+        <img src="assets/dog1.jpg" alt="Group of rescued dogs resting" class="dog-photo" />
+        <h4>Rescuing Dogs in Need</h4>
+        <p>These brave dogs were saved after living alone on the streets. Now, they rest safely in our care, waiting for new families.</p>
+        <button class="read-story-btn" onclick="openModal('Rescuing Dogs in Need', 'These three brave dogs lived for months alone on the streets, surviving together. Thanks to a person who gave a call to us, they found shelter, food, and care. Now, they are resting peacefully while getting a medical care and will soon be waiting for families who will love them forever.')">Read More</button>
+      </div>
+
+      <div class="dog-card">
+        <img src="assets/dog0.jpg" alt="Young puppy looking for a home" class="dog-photo" />
+        <h4>Building Loving Families</h4>
+        <p>These little pups were found cold and scared. Today, they have a warm bed and loving family they'd been dreaming of.</p>
+        <button class="read-story-btn" onclick="openModal('Building Loving Families', 'These puppies were rescued during a cold winter night, frightened and hungry. Our team provided warmth, medical care, and safety. Today, they are healthy and playful, living a happy lives in their forever homes full of love.')">Read More</button>
+      </div>
+
+      <div class="dog-card">
+        <img src="assets/dog3.jpg" alt="Dogs behind a fence" class="dog-photo" />
+        <h4>Spreading Compassion</h4>
+        <p>Behind every fence are hearts full of hope. We fight every day to free dogs like these and give them a second chance.</p>
+        <button class="read-story-btn" onclick="openModal('Spreading Compassion', 'Locked behind fences and forgotten, these dogs still hold onto hope. Our rescue team working very hard to free such dogs... Please do not ignore dogs in danger. If you see a dog that needs help, let us know right away.')">Read More</button>
+      </div>
+    </div>
+
+    <h3>We are committed to:</h3>
+    <ul>
+      <li><strong>Rescuing Dogs</strong>: We focus on dogs from shelters, strays, and those in need of urgent care. By providing them with a safe space, medical treatment, and plenty of love, we give them the chance to heal and find a family.</li>
+      <li><strong>Connecting Families</strong>: Through our adoption process, we match families with dogs that best suit their lifestyle, ensuring a happy life for both pet and owner. We guide you through every step of the journey—from adoption to settling in your new home.</li>
+      <li><strong>Promoting Responsible Pet Ownership</strong>: We believe in the importance of educating our community about responsible pet ownership. Our efforts focus on awareness, training, and support to ensure that adopted dogs receive the care they need throughout their lives.</li>
+      <li><strong>Fostering Compassion</strong>: We encourage compassion and empathy for animals. By sharing the stories of our dogs, we hope to inspire others to adopt, volunteer, and contribute to our cause, building a stronger community of animal lovers.</li>
+      <li><strong>Supporting Ongoing Care</strong>: Even after adoption, we continue to provide advice and support to families as they adjust to life with their new companion.</li>
+    </ul>
+
+    <p>
+      We aim to create a world where every dog has a chance to thrive in a loving home. Through compassion, dedication, and community support, we’re committed to improving the lives of rescue dogs and their families.
+    </p>
+
+    <h3>Join Us in Making a Difference</h3>
+    <p>
+      Whether you’re looking to adopt, volunteer, or donate, there are many ways you can help us in our mission. Every action you take brings us closer to creating a brighter future for dogs in need.
+    </p>
+
+  </div> 
+
+  <!-- Back to Home Button -->
+  <a href="index.html" class="go-back-btn">Back to Home</a>
+
+  <!-- Modal Structure -->
+  <div id="storyModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h4 id="modal-title"></h4>
+      <p id="modal-text"></p>
+    </div>
+  </div>
+
+  <!-- JavaScript for Modal -->
+  <script>
+    function openModal(title, text) {
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-text').innerText = text;
+      document.getElementById('storyModal').style.display = 'block';
+    }
+    
+    function closeModal() {
+      document.getElementById('storyModal').style.display = 'none';
+    }
+    
+    window.onclick = function(event) {
+      const modal = document.getElementById('storyModal');
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+</html>
+

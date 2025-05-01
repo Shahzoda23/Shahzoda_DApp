@@ -4,34 +4,134 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Pete's Pet Shop</title>
-
-    <!-- Bootstrap -->
+    <title>Happy Tails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-8 col-sm-push-2">
-          <h1 class="text-center">Pete's Pet Shop</h1>
-          <hr/>
-          <br/>
+  
+    <!-- Main Content Section -->
+    <div id="mainContent">
+      <div class="top-hero text-center d-flex flex-column align-items-center justify-content-center">
+  
+        <div class="top-buttons-frame">
+          <p class="top-buttons-text">Discover How We Change Lives</p>
+          <a href="mission.html" class="our-mission-link"> 🎯Our Mission</a>
         </div>
+  
+        <div class="hero-content">
+          <h2 class="site-title">Second Chance Paws</h2>
+          <p class="adopt-message hero-subtext">
+            Every dog deserves a second chance. Open your heart and home — adopt, make a lifetime of love possible.
+          </p>
+          <button class="btn btn-primary find-dog-btn mt-3" id="findDogButton" onclick="showSelectionForm()">Find a Dog</button>
+        </div>
+  
       </div>
 
-      <div id="petsRow" class="row">
-        <!-- PETS LOAD HERE -->
+      <div class="container">
+        <section id="intro">
+          <!-- Optional intro content here if needed -->
+        </section>
       </div>
     </div>
 
+    <!-- Wrapped About + Stats -->
+    <div class="container" id="aboutSection">
+      <div class="row full-width-about">
+        <div class="col-xs-12">      
+          <h1 class="text-center"> About Us </h1>
+          <hr/>
+          <br/>
+          <p class="about-text">We are dedicated to finding loving homes for rescue dogs across the UK. Our mission is to connect kind-hearted adopters with pets in need, ensuring a safe and happy future for every dog.</p>
+          <p class="about-text">Our journey began with a simple act of kindness: One day, we met someone struggling to find a home for their dog, who needed a special kind of care. They had tried everything but couldn’t find the right fit. Moved by the situation, we decided to step in. Over the past 1.5 years, we’ve re-homed more than 45 dogs, but we’ve also provided safe, loving foster homes for those who needed time to heal. It’s not just about finding a dog a home; it’s about giving them hope—whether for a moment or forever. Every dog that comes through our doors leaves with a better chance at life, and we’re proud to be part of their journey!</p>
+        </div>
+      </div>
+
+      <div class="dog-stats">
+        <div class="stat">
+          <span class="emoji">🐶</span>
+          <h3>45+</h3>
+          <p>Dogs Rehomed</p>
+        </div>
+        <div class="stat">
+          <span class="emoji">❤️</span>
+          <h3>35</h3>
+          <p>Foster Families</p>
+        </div>
+        <div class="stat">
+          <span class="emoji">🏡</span>
+          <h3>1.5</h3>
+          <p>Years of Service</p>
+        </div>
+      </div>
+    </div>
+<!-- Dog Selection Section -->
+<section id="dogSelection" style="display: none;">
+  <div class="dog-selection-wrapper" style="position: relative;">
+    <button class="btn btn-link go-back-btn" onclick="goBack()">Go Back</button>
+
+    <h2 class="text-center">Find Your Forever Friend</h2>
+
+    <div class="form-group">
+      <label for="age">Age:</label>
+      <select id="age" class="form-control">
+        <option value="all">All</option>
+        <option value="puppy">Puppy</option>
+        <option value="adult">Adult</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="breed">Breed:</label>
+      <select id="breed" class="form-control">
+        <option value="all breeds">All Breeds</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select id="gender" class="form-control">
+        <option value="all genders">All Genders</option>
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="location">Location:</label>
+      <select id="location" class="form-control">
+        <option value="all">All</option>
+      </select>
+    </div>
+
+    <button class="btn btn-success center-block btn-search" onclick="searchDogs()">Search</button>
+  </div>
+
+  <img src="assets/cut0.PNG" class="dog-image-left">
+  <img src="assets/cut1.PNG" class="dog-image-right">
+</section>
+   
+    <!-- Filtered Results Section -->
+    <section id="resultsPage" style="display: none; position: relative;">
+      <button class="btn btn-link go-back-btn" onclick="goBack()">Go Back</button>
+      <div class="container">
+        <h2 class="text-center">These Dogs Need Your Love</h2>
+        <p class="subtext text-center">Your new Best Friend is here, just make a choice🐾</p>
+        <div id="petsRow" class="row">
+          <!-- Filtered dogs will appear here -->
+        </div>
+      </div>
+    </section>
+
+    <div id="noResultsMessage" class="no-results-box" style="display: none;">
+      <h2>🐾 Sorry!</h2>
+      <p>The dog/s you selected is currently not available for adoption.</p>
+      <p><em>Please explore other lovely pups waiting for a forever home!</em></p>
+    </div>
+    
+    <!-- Pet Card Template -->
     <div id="petTemplate" style="display: none;">
       <div class="col-sm-6 col-md-4 col-lg-3">
         <div class="panel panel-default panel-pet">
@@ -39,10 +139,11 @@
             <h3 class="panel-title">Scrappy</h3>
           </div>
           <div class="panel-body">
-            <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
+            <img alt="140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg">
             <br/><br/>
             <strong>Breed</strong>: <span class="pet-breed">Golden Retriever</span><br/>
             <strong>Age</strong>: <span class="pet-age">3</span><br/>
+            <strong>Gender</strong>: <span class="pet-gender">Female, Male</span><br/>
             <strong>Location</strong>: <span class="pet-location">Warren, MI</span><br/><br/>
             <button class="btn btn-default btn-adopt" type="button" data-id="0">Adopt</button>
           </div>
@@ -50,12 +151,86 @@
       </div>
     </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/web3.min.js"></script>
     <script src="js/truffle-contract.js"></script>
     <script src="js/app.js"></script>
+
+    <!-- Show/Hide Function -->
+    <script>
+      let currentView = 'main';
+
+      function showSelectionForm() {
+        currentView = 'selection';
+        document.getElementById('mainContent').style.display = 'none';
+        document.getElementById('aboutSection').style.display = 'none';
+        document.getElementById('dogSelection').style.display = 'block';
+        document.getElementById('resultsPage').style.display = 'none';
+      }
+
+      function showResultsPage() {
+        currentView = 'results';
+        document.getElementById('mainContent').style.display = 'none';
+        document.getElementById('aboutSection').style.display = 'none';
+        document.getElementById('dogSelection').style.display = 'none';
+        document.getElementById('resultsPage').style.display = 'block';
+      }
+
+      function goBack() {
+        if (currentView === 'results') {
+          showSelectionForm();
+        } else if (currentView === 'selection') {
+          currentView = 'main';
+          document.getElementById('mainContent').style.display = 'block';
+          document.getElementById('aboutSection').style.display = 'block';
+          document.getElementById('dogSelection').style.display = 'none';
+          document.getElementById('resultsPage').style.display = 'none';
+        }
+      }
+    </script>
+
+    <div id="mainInfoSection">
+      <section class="info-section">
+        <div class="info-card">
+          <h3>📍 Location</h3>
+          <p>
+            Happy Tails<br>
+            22 Elgin House,<br>
+            London<br>
+            E14 6EG<br>
+            <a href="https://www.google.com/maps/place/London+E14+6EG" target="_blank">Google Maps</a>
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3>☎️ Contact Us</h3>
+          <p>📞 +44 7534 657568<br>(9am–5pm)</p>
+          <p><a href="mailto:shaxarahimova1501@gmail.com">📬 shaxarahimova1501@gmail.com</a></p>
+        </div>
+
+        <div class="info-card">
+          <h3>🤝 Support Us</h3>
+          <div class="support-buttons">
+            <a href="support-us.html" class="donate-btn">💖 Donate</a>
+            <a href="volunteer.html" class="volunteer-btn">🙋‍♂️🐾 Volunteer</a>
+          </div>
+        </div>    
+      </section>
+
+      <footer id="mainFooter" class="site-footer">
+        <div class="footer-content">
+          <p>© 2025 Happy Tails. All rights reserved.</p>
+          <p class="footer-links">
+            <a href="terms.html">📄 Terms of Use</a> |
+            <a href="privacy.html">🔒 Privacy Policy</a>
+          </p>
+        </div>
+      </footer>
+    </div>
+
   </body>
 </html>
+
+    

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Support Us - Happy Tails</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <button class="btn btn-link go-back-btn donation-only" onclick="goBack()">Go Back</button>
+
+  <section class="donation-hero">
+    <div class="donation-hero-container">
+      <div id="donationMessage" class="donation-error-message" style="display: none;"></div>
+    <div class="donation-card">
+      <h2>Donate Today</h2>
+
+      <div class="preset-amounts">
+        <button class="amount-btn">£5</button>
+        <button class="amount-btn">£10</button>
+        <button class="amount-btn">£25</button>
+        <button class="amount-btn">£50</button>
+        <button class="amount-btn">£75</button>
+        <button class="amount-btn">£100</button>
+      </div>
+
+      <p class="amount-info"><strong>£10/month helps feed and shelter rescued dogs 🐶</strong></p>
+
+      <button class="cta-donate">Donate</button>
+    </div>
+  </section>
+  <div class="donation-faq-static">
+    <h3>🐾 How we use the money you give us</h3>
+    <p>
+      Most of your donation goes straight to helping animals – rescuing, feeding, giving medical care, and finding loving homes. A small bit helps us spread the word and keep things running smoothly. Every pound makes a difference!
+    </p>
+  
+    <h3>🤝 Our Promise to You</h3>
+    <p>
+      We’ll always be honest about how your support helps. We’ll never pressure you, and we’re so grateful you’re part of the Happy Tails family.
+    </p>
+  
+    <h3>📞 Contact Us</h3>
+    <p> 
+      <strong>📱 +44 7534 657568</strong><br> 
+      (9am–5pm)<br><br>
+    </p>
+  </div>  
+ 
+  <script> // below is only clicked amount wil be green
+    const amountButtons = document.querySelectorAll('.amount-btn');
+  
+    amountButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        amountButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+      });
+    });
+  </script>  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const amountButtons = document.querySelectorAll('.amount-btn');
+      const donateBtn = document.querySelector('.cta-donate');
+      const messageBox = document.getElementById('donationMessage');
+  
+      // Highlighting selected amount
+      amountButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          amountButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+        });
+      });
+  
+      // error message with selected amount
+      donateBtn.addEventListener('click', () => {
+        const activeBtn = document.querySelector('.amount-btn.active');
+        if (activeBtn) {
+          const amount = activeBtn.textContent.trim();
+          messageBox.innerHTML = `🚫 Your donation of <strong>${amount}</strong> can't be processed this time, as we are having technical issues. We apologise for the inconvenience and thank you for your willingness to support us!`;
+          messageBox.style.display = 'block';
+        } else {
+          messageBox.innerHTML = `🚫 Please select an amount to donate.`;
+          messageBox.style.display = 'block';
+        }
+      });
+    });
+  
+    // Keep your goBack function outside
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+  
+</body>
+</html>
